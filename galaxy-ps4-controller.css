@@ -1,21 +1,36 @@
-/* Galaxy Background */
+/* Basic Test Styles for Gamepad Viewer */
 body {
-  background: radial-gradient(circle at center, #2b0057, #100022);
-  overflow: hidden;
+  background: radial-gradient(circle at center, #2b0057, #100022); /* Starry background */
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
-/* Animated Stars */
+.gamepad {
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+}
+
+/* Button styles */
+.button {
+  background-color: #b080ff; /* Button color */
+  border-radius: 5px;
+  padding: 10px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ffffff; /* Button highlight on hover */
+}
+
+.button:active {
+  filter: drop-shadow(0 0 10px #ffffffaa); /* Active state glow */
+  transform: scale(1.1); /* Slight button zoom effect */
+}
+
+/* Animated stars effect (optional) */
 @keyframes starFloat {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-2000px) scale(0.5);
-    opacity: 0;
-  }
+  0% { transform: translateY(0) scale(1); opacity: 0.8; }
+  100% { transform: translateY(-2000px) scale(0.5); opacity: 0; }
 }
 
 .star {
@@ -26,52 +41,4 @@ body {
   border-radius: 50%;
   opacity: 0.7;
   animation: starFloat linear infinite;
-}
-
-/* Create many stars using ::before pseudo-elements */
-body::before {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  background: transparent;
-}
-
-body::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(white 1px, transparent 0),
-    radial-gradient(white 1px, transparent 0),
-    radial-gradient(white 1px, transparent 0),
-    radial-gradient(white 1px, transparent 0),
-    radial-gradient(white 1px, transparent 0);
-  background-size: 2px 2px;
-  animation: animateStars 60s linear infinite;
-}
-
-@keyframes animateStars {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-1000px); }
-}
-
-/* Controller glow effect (optional) */
-.controller {
-  filter: drop-shadow(0 0 10px #b080ff);
-}
-
-/* Button highlight (optional for flair) */
-button, .button {
-  transition: all 0.3s ease;
-}
-
-button:active, .button:active {
-  filter: drop-shadow(0 0 10px #ffffffaa);
-  transform: scale(1.1);
 }
