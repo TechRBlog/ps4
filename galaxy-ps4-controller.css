@@ -1,0 +1,77 @@
+/* Galaxy Background */
+body {
+  background: radial-gradient(circle at center, #2b0057, #100022);
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* Animated Stars */
+@keyframes starFloat {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-2000px) scale(0.5);
+    opacity: 0;
+  }
+}
+
+.star {
+  position: fixed;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.7;
+  animation: starFloat linear infinite;
+}
+
+/* Create many stars using ::before pseudo-elements */
+body::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background: transparent;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(white 1px, transparent 0),
+    radial-gradient(white 1px, transparent 0),
+    radial-gradient(white 1px, transparent 0),
+    radial-gradient(white 1px, transparent 0),
+    radial-gradient(white 1px, transparent 0);
+  background-size: 2px 2px;
+  animation: animateStars 60s linear infinite;
+}
+
+@keyframes animateStars {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1000px); }
+}
+
+/* Controller glow effect (optional) */
+.controller {
+  filter: drop-shadow(0 0 10px #b080ff);
+}
+
+/* Button highlight (optional for flair) */
+button, .button {
+  transition: all 0.3s ease;
+}
+
+button:active, .button:active {
+  filter: drop-shadow(0 0 10px #ffffffaa);
+  transform: scale(1.1);
+}
